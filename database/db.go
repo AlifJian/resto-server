@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"gihtub.com/AlifJian/resto-server/model"
 	"gihtub.com/AlifJian/resto-server/util"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
@@ -33,6 +34,7 @@ func InitDb() {
 		panic("Database > " + errOpenDatabase.Error())
 	}
 
-	Db = *db
+	db.AutoMigrate(model.User{})
 
+	Db = *db
 }
