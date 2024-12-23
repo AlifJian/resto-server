@@ -27,7 +27,7 @@ func InitDb() {
 	DATABASE_NAME := os.Getenv("DATABASE_NAME")
 	dsn := fmt.Sprintf(`%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local`, USER, PASSWORD, HOST, PORT, DATABASE_NAME)
 
-	db, errOpenDatabase := gorm.Open(mysql.Open(dsn))
+	db, errOpenDatabase := gorm.Open(mysql.Open(dsn), &gorm.Config{TranslateError: true})
 	if errOpenDatabase != nil {
 		panic("Database > " + errOpenDatabase.Error())
 	}

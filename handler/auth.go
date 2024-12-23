@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"errors"
 	"os"
 	"strconv"
 
@@ -8,6 +9,7 @@ import (
 	"gihtub.com/AlifJian/resto-server/model"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
 
 func AuthLoginUser(c *fiber.Ctx) error {
@@ -79,8 +81,14 @@ func AuthRegisterUser(c *fiber.Ctx) error {
 	result := database.Db.Create(&user)
 
 	if result.Error != nil {
-		response = &model.UserRegisterResponse{
-			Message: "Error Create user",
+		if errors.Is(result.Error, gorm.ErrDuplicatedKey) {
+			response = &model.UserRegisterResponse{
+				Message: "Email already registered",
+			}
+		} else {
+			response = &model.UserRegisterResponse{
+				Message: "Error Create user",
+			}
 		}
 		return c.Status(500).JSON(response)
 	}
