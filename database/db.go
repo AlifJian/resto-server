@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"gihtub.com/AlifJian/resto-server/model"
-	"gihtub.com/AlifJian/resto-server/util"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -14,7 +13,6 @@ import (
 var Db gorm.DB
 
 func InitDb() {
-	defer util.Catch()
 
 	errLoadEnv := godotenv.Load()
 

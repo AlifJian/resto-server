@@ -7,5 +7,6 @@ import (
 
 func InitAuthRoute(app *fiber.App) {
 	apiAuthGroup := app.Group("/auth")
-	apiAuthGroup.Post("/", handler.AuthLoginUser)
+	apiAuthGroup.Post("/login", handler.AuthLoginUser)
+	apiAuthGroup.Post("/register", handler.AuthRegisterUser)
 }

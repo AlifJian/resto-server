@@ -10,6 +10,18 @@ type User struct {
 	RefreshToken string `json:"refresh-token"`
 }
 
+type UserRegisterRequest struct {
+	Name            string `json:"name"`
+	Email           string `json:"email"`
+	Password        string `json:"password"`
+	ConfirmPassword string `json:"confirm-password"`
+}
+
+type UserRegisterResponse struct {
+	User
+	AccessToken string `json:"access-token"`
+	Message     string `json:"message"`
+}
 type UserLoginRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
@@ -18,4 +30,5 @@ type UserLoginRequest struct {
 type UserLoginResponse struct {
 	RefreshToken string `json:"refresh-token"`
 	AccessToken  string `json:"access-token"`
+	Message      string `json:"message"`
 }
