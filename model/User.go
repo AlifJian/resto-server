@@ -3,9 +3,9 @@ package model
 import "gorm.io/gorm"
 
 type User struct {
-	name         string
-	email        string
-	password     string
-	refreshToken string
 	gorm.Model
+	Name         string `json:"name"`
+	Email        string `gorm:"not null;unique" json:"email"`
+	Password     string `json:"-"`
+	RefreshToken string `json:"Refresh-Token"`
 }
