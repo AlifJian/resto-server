@@ -1,7 +1,7 @@
 package main
 
 import (
-	database "gihtub.com/AlifJian/resto-server/Database"
+	"gihtub.com/AlifJian/resto-server/database"
 	"gihtub.com/AlifJian/resto-server/routes"
 	"github.com/gofiber/fiber/v2"
 )
